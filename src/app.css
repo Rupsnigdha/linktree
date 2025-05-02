@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+.font-quintessential {
+    font-family: "Quintessential", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font-raleway {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+}
