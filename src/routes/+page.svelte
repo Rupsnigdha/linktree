@@ -6,10 +6,7 @@
 </script>
 
 <div class="relative h-screen overflow-hidden">
-	<div class="absolute top-4 right-4">
-		<button
-			class="relative rounded-full p-2"
-			onclick={() => {
+	<button class="absolute top-4 right-4 z-50" onclick={() => {
 				if (navigator.share) {
 					navigator
 						.share({
@@ -22,11 +19,14 @@
 				} else {
 					console.log('Share not supported on this browser, do it the old way.');
 				}
-			}}
+			}}>
+		<div
+			class="relative rounded-full p-2"
+			
 		>
 			<Share />
-		</button>
-	</div>
+		</div>
+	</button>
 
 	<div
 		class="absolute bottom-0 left-1/2 z-30 flex w-full -translate-x-1/2 flex-col gap-4 p-12 pb-30"
