@@ -1,10 +1,8 @@
 <script>
 	import { Canvas } from '@threlte/core';
 	import Scene from '$lib/components/demo/scene.svelte';
-	import Scene2 from '$lib/components/Scene.svelte';
-	import Background from '$lib/assets/background.jpg';
 	import ProfilePicture from '$lib/assets/me.jpg';
-	import { Share } from '@lucide/svelte';
+	import { Github, Globe, Pickaxe, Share } from '@lucide/svelte';
 </script>
 
 <div class="relative h-screen overflow-hidden">
@@ -33,22 +31,30 @@
 	<div
 		class="absolute bottom-0 left-1/2 z-30 flex w-full -translate-x-1/2 flex-col gap-4 p-12 pb-30"
 	>
-		<div
-			class="font-raleway relative mb-2 border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium"
+		<a
+			href="https://rupsnigdha.com/"
+			class="font-raleway block relative mb-2 border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium flex gap-4"
 		>
 			<div class="absolute top-1 -right-1 -z-10 h-full w-full bg-black"></div>
+			<Globe />
 			Portfolio
-		</div>
-		<div
-			class="font-raleway relative mb-2 border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium"
+</a>
+		<a
+			href="https://rups.fun/"
+			class="font-raleway block relative mb-2 flex gap-4 border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium"
 		>
 			<div class="absolute top-1 -right-1 -z-10 h-full w-full bg-black"></div>
+			<Pickaxe />
 			Garage Workshop
-		</div>
-		<div class="font-raleway relative border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium">
+</a>
+		<a
+			href="https://github.com/Rupsnigdha"
+			class="font-raleway block relative flex gap-4 border-2 border-black bg-[#CA8E82] px-4 py-2 font-medium"
+		>
 			<div class="absolute top-1 -right-1 -z-10 h-full w-full bg-black"></div>
+			<Github />
 			Github
-		</div>
+</a>
 	</div>
 	<div class="absolute inset-0 z-20 h-screen">
 		<Canvas>
