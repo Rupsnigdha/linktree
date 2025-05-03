@@ -3,6 +3,7 @@
 	import Scene from '$lib/components/demo/scene.svelte';
 	import ProfilePicture from '$lib/assets/me.jpg';
 	import { Github, Globe, Pickaxe, Share } from '@lucide/svelte';
+	import { onMount } from 'svelte';
 	let innerHeight = $state(0)
 </script>
 
