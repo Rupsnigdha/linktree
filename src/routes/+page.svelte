@@ -3,9 +3,11 @@
 	import Scene from '$lib/components/demo/scene.svelte';
 	import ProfilePicture from '$lib/assets/me.jpg';
 	import { Github, Globe, Pickaxe, Share } from '@lucide/svelte';
+	let innerHeight = $state(0)
 </script>
 
-<div class="relative h-screen overflow-hidden">
+<svelte:window bind:innerHeight />
+<div class="relative overflow-hidden" style="height: {innerHeight}px">
 	<button class="absolute top-4 right-4 z-50" onclick={() => {
 				if (navigator.share) {
 					navigator
