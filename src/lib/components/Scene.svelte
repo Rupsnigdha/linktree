@@ -1,12 +1,5 @@
 <script>
-	import {
-		Environment,
-		OrbitControls,
-		useDraco,
-		useGltf,
-		useGltfAnimations
-	} from '@threlte/extras';
-      import { TextureLoader, EquirectangularReflectionMapping } from 'three'
+	import { GLTF, useDraco, useGltf, useGltfAnimations } from '@threlte/extras';
 
 	import { T } from '@threlte/core';
 	const gltf = useGltf('/assets/model/scene.gltf');
@@ -17,8 +10,9 @@
 			$actions['Animation'].play();
 		}
 	});
-</script>
 
+	const dracoLoader = useDraco();
+</script>
 
 <T.PerspectiveCamera
 	makeDefault
@@ -26,9 +20,8 @@
 	oncreate={(ref) => {
 		ref.lookAt(0, 1, 0);
 	}}
->
-</T.PerspectiveCamera>
+></T.PerspectiveCamera>
 
-{#await gltf then { scene }}
-	<T is={scene} />
+{#await useGltf('/assets/model/scene.gltf') then { scene }}
+	<T is={scene} {dracoLoader} />
 {/await}

@@ -1,7 +1,7 @@
 <script>
 	import { Canvas } from '@threlte/core';
-	import Scene from '$lib/components/Scene.svelte';
-
+	import Scene from '$lib/components/demo/scene.svelte';
+	import Scene2 from '$lib/components/Scene.svelte';
 	import Background from '$lib/assets/background.jpg';
 	import ProfilePicture from '$lib/assets/me.jpg';
 </script>
@@ -9,7 +9,7 @@
 <div class="relative h-screen overflow-hidden">
 	<div class="absolute inset-0 z-20 h-screen">
 		<Canvas>
-			<Scene />
+			<Scene2 />
 		</Canvas>
 	</div>
 
