@@ -9,14 +9,26 @@ Title: Handpainted watercolor scene
 
 <script>
   import { Group } from 'three'
+
   import { T } from '@threlte/core'
-  import { useGltf, useGltfAnimations } from '@threlte/extras'
+  import { useGltf, useGltfAnimations, useDraco } from '@threlte/extras'
 
   let { fallback, error, children, ref = $bindable(), ...props } = $props()
-  const gltf = useGltf('./assets/model/scene-transformed.glb')
-  const animations = useGltfAnimations(gltf, ref)
-  const actions = animations.actions
-  const mixer = animations.mixer
+
+  ref = new Group()
+
+  const dracoLoader = useDraco()
+  const gltf = useGltf('./assets/model/scene-transformed.glb', {
+    dracoLoader
+  })
+
+  export const { actions, mixer } = useGltfAnimations(gltf, ref)
+  mixer.timeScale = 0.5;
+	$effect(() => {
+		if ($actions && $actions['Animation']) {
+			$actions['Animation'].play();
+		}
+	});
 
 </script>
 
@@ -28,6 +40,13 @@ Title: Handpainted watercolor scene
   {#await gltf}
     {@render fallback?.()}
   {:then gltf}
+  <T.PerspectiveCamera
+	makeDefault
+	position={[15, 0, 15]}
+	oncreate={(ref) => {
+		ref.lookAt(0, 1, 0);
+	}}
+></T.PerspectiveCamera>
     <T.Group name="Sketchfab_Scene">
       <T.Group
         name="Sketchfab_model"

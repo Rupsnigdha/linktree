@@ -9,7 +9,7 @@
 <div class="relative h-screen overflow-hidden">
 	<div class="absolute inset-0 z-20 h-screen">
 		<Canvas>
-			<Scene2 />
+			<Scene />
 		</Canvas>
 	</div>
 
