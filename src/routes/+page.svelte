@@ -2,6 +2,7 @@
 	import { Canvas } from '@threlte/core';
 	import Scene from '$lib/components/demo/scene.svelte';
 	import ProfilePicture from '$lib/assets/me.jpg';
+	import Background from '$lib/assets/background.png';
 	import { Github, Globe, Pickaxe, Share } from '@lucide/svelte';
 	let innerHeight = $state(0)
 </script>
@@ -71,7 +72,9 @@
 		<div class="font-raleway text-2xl font-bold">@rupsnigdha</div>
 	</div>
 
-	<div class="absolute inset-0 -z-10 h-screen w-screen bg-[#BAE0DA]"></div>
+	<div class="absolute inset-0 -z-10 h-screen w-screen bg-gradient-to-b from-[#BAE0DA] to-[#F2E7DD]">
+		<img src={Background} alt="" class="absolute inset-0 h-full w-full object-cover">
+	</div>
 </div>
 
 <style>

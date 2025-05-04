@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/handpainted-watercolor-scene-0bd8711c1e9
 Title: Handpainted watercolor scene
 -->
 
-<script>
+<script lang="ts">
 	import { Group } from 'three';
 
 	import { T } from '@threlte/core';
@@ -31,20 +31,38 @@ Title: Handpainted watercolor scene
 		}
 	});
 
-  let deviceOrientation = $state({
-    alpha: 0,
-    beta: 0,
-    gamma: 0
-  })
-  
+	let rotations = $state(
+		{
+			alpha: 0,
+			beta: 0,
+			gamma: 0
+		}
+	);
+	
+	const rotationSpeed = 0.25;
+	const rotationAmplitude = {
+		alpha: 0.01,
+		beta: 0.25,
+		gamma: 0.01
+	};
+	
 	onMount(() => {
-		window.addEventListener('deviceorientation', (event) => {
-			deviceOrientation = {
-        alpha: event.alpha ?? 0,
-        beta: event.beta ?? 0,
-        gamma: event.gamma ?? 0
-      }
-		});
+		let frame: number;
+		let startTime = performance.now();
+		
+		const animate = (time: number) => {
+			const elapsed = (time - startTime) / 1000;
+			rotations.alpha = Math.sin(elapsed * rotationSpeed) * rotationAmplitude.alpha;
+			rotations.beta = Math.sin(elapsed * rotationSpeed) * rotationAmplitude.beta + 0.25;
+			rotations.gamma = Math.sin(elapsed * rotationSpeed) * rotationAmplitude.gamma;
+			frame = requestAnimationFrame(animate);
+		};
+		
+		animate(startTime);
+		
+		return () => {
+			cancelAnimationFrame(frame);
+		};
 	});
 </script>
 
@@ -59,7 +77,7 @@ Title: Handpainted watercolor scene
 				ref.lookAt(0, 1, 0);
 			}}
 		></T.PerspectiveCamera>
-		<T.Group name="Sketchfab_Scene" rotation={[0, (((deviceOrientation.alpha <= 40 || deviceOrientation.alpha >= 320) ? deviceOrientation.alpha : 40) * Math.PI) / 180, 0]}>
+		<T.Group name="Sketchfab_Scene" rotation={[rotations.alpha, rotations.beta, rotations.gamma]}>
 			<T.Group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
 				<T.Group name="root">
 					<T.Group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
